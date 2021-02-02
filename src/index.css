@@ -6,7 +6,7 @@ body {
   background-color: #282c34;
 }
 
-h1, h2, h3, h4, h5, h6, .gradient {
+h1, h2, h3, h4, h5, h6, .gradient, #root > div > div > div > nav > span > h1 {
   font-family: 'Noto Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -16,11 +16,15 @@ h1, h2, h3, h4, h5, h6, .gradient {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  font-weight:700;
+  margin-left: 5%;
+  padding-right: 10%;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 
 select.form-control,
 textarea.form-control,
@@ -29,4 +33,31 @@ input.form-control {
 }
 input[type=file] {
   width: 100%;
+}
+
+.noto{
+   font-family: 'Noto Sans', sans-serif;
+   font-weight: bold;
+   text-transform: uppercase;
+}
+.nav-padding{
+  padding-right:10%;
+}
+
+#root > div > div.p-0.row > div > nav > div > div > div {
+  color:white;
+  font-style: oblique;
+}
+#root > div > div.p-0.row > div > nav > div > div > div > button.noto.btn.btn-dark > a{
+  color:white;
+  font-style: oblique;
+}
+
+#root > div > div.p-0.row > div > nav > div > div > div > button.noto.btn.btn-outline-danger > a:hover{
+  color:white;
+  font-style: oblique;
+}
+
+#root > div > div.p-0.row > div > nav > div > div > div > button.noto.btn.btn-danger > a {
+ color:white;
 }
