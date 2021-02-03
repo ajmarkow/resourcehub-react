@@ -33,7 +33,7 @@ h6,
   background-clip: text;
   color: transparent;
   font-weight: 700;
-  cmargin-left: 5%;
+  margin-left: 5%;
   padding-right: 10%;
 }
 code {
@@ -114,7 +114,8 @@ input[type="file"] {
   padding-right: 10%;
 }
 
-#root > div > div.p-0.row > div > nav > div > div > div {
+#root > div > div.p-0.row > div > nav > div > div > div,
+#root > div > div.Signup > form {
   color: white;
   font-style: oblique;
 }
@@ -163,4 +164,9 @@ input[type="file"] {
 
 #root > div > div.Login {
   color: white;
+}
+
+#root > div > div.Signup > form > div > small {
+  color: white;
+  font-weight: bolder;
 }

@@ -13,8 +13,11 @@ import "./App.css";
 import "./index.css";
 import { Auth } from "aws-amplify";
 import { AppContext } from "./libs/contextLib";
+import { useHistory } from "react-router-dom";
+import { onError } from "./libs/errorLib";
 
 function App() {
+  const history = useHistory();
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
 
@@ -28,7 +31,7 @@ function App() {
       userHasAuthenticated(true);
     } catch (e) {
       if (e !== "No current user") {
-        alert(e);
+        onError(e);
       }
     }
     setIsAuthenticating(false);
@@ -36,8 +39,8 @@ function App() {
 
   async function handleLogout() {
     await Auth.signOut();
-
     userHasAuthenticated(false);
+    history.push("/login");
   }
 
   return (
