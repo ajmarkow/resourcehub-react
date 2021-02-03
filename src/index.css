@@ -1,95 +1,166 @@
 body {
   margin: 0;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #282c34;
 }
 
-h1, h2, h3, h4, h5, h6, .gradient, #root > div > div > div > nav > span > h1 {
-  font-family: 'Noto Sans', sans-serif;
+#root > div > div.p-0.row > div > nav > a > h1,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.gradient,
+#root > div > div > div > nav > span > h1 {
+  font-family: "Noto Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-    background: #21c07b; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #21c07b, #0c6dd4); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #21c07b, #0c6dd4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #21c07b; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #21c07b,
+    #0c6dd4
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #21c07b,
+    #0c6dd4
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  font-weight:700;
+  font-weight: 700;
   cmargin-left: 5%;
   padding-right: 10%;
 }
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
 
 select.form-control,
 textarea.form-control,
 input.form-control {
   font-size: 1rem;
 }
-input[type=file] {
+input[type="file"] {
   width: 100%;
 }
 
-.noto{
-   font-family: 'Noto Sans', sans-serif;
-   font-weight: bold;
-   text-transform: uppercase;
+.noto {
+  font-family: "Noto Sans", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
 }
-.nav-padding{
-  padding-right:10%;
+.nav-padding {
+  padding-right: 10%;
 }
 
-#root > div > div.p-0.row > div > nav > div > div > button > a,#root > div > div.p-0.row > div > nav > div > div > div {
-  color:white;
+#root > div > div.p-0.row > div > nav > div > div > button > a,
+#root > div > div.p-0.row > div > nav > div > div > div {
+  color: white;
   font-style: oblique;
 }
-#root > div > div.p-0.row > div > nav > div > div > div > button.noto.btn.btn-dark > a{
-  color:white;
+#root
+  > div
+  > div.p-0.row
+  > div
+  > nav
+  > div
+  > div
+  > div
+  > button.noto.btn.btn-dark
+  > a {
+  color: white;
   font-style: oblique;
 }
 
-#root > div > div.p-0.row > div > nav > div > div > div > button.noto.btn.btn-outline-danger > a:hover{
-  color:white;
+#root
+  > div
+  > div.p-0.row
+  > div
+  > nav
+  > div
+  > div
+  > div
+  > button.noto.btn.btn-outline-danger
+  > a:hover {
+  color: white;
   font-style: oblique;
 }
 
- #root > div > div.p-0.row > div > nav > div > div > div > button.noto.btn.btn-danger > a {
- color:white;
+#root
+  > div
+  > div.p-0.row
+  > div
+  > nav
+  > div
+  > div
+  > div
+  > button.noto.btn.btn-danger
+  > a {
+  color: white;
 }
 
-.noto{
-   font-family: 'Noto Sans', sans-serif;
-   font-weight: bold;
-   text-transform: uppercase;
+.noto {
+  font-family: "Noto Sans", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
 }
-.nav-padding{
-  padding-right:10%;
+.nav-padding {
+  padding-right: 10%;
 }
 
 #root > div > div.p-0.row > div > nav > div > div > div {
-  color:white;
+  color: white;
   font-style: oblique;
 }
-#root > div > div.p-0.row > div > nav > div > div > div > button.noto.btn.btn-dark > a, #root > div > div.Login > form > button{
-  color:white;
+#root
+  > div
+  > div.p-0.row
+  > div
+  > nav
+  > div
+  > div
+  > div
+  > button.noto.btn.btn-dark
+  > a,
+#root > div > div.Login > form > button {
+  color: white;
   font-style: oblique;
   text-transform: uppercase;
 }
 
-#root > div > div.p-0.row > div > nav > div > div > div > button.noto.btn.btn-outline-danger > a:hover{
-  color:white;
+#root
+  > div
+  > div.p-0.row
+  > div
+  > nav
+  > div
+  > div
+  > div
+  > button.noto.btn.btn-outline-danger
+  > a:hover {
+  color: white;
   font-style: oblique;
 }
 
-#root > div > div.p-0.row > div > nav > div > div > div > button.noto.btn.btn-danger > a {
- color:white;
+#root
+  > div
+  > div.p-0.row
+  > div
+  > nav
+  > div
+  > div
+  > div
+  > button.noto.btn.btn-danger
+  > a {
+  color: white;
 }
 
-#root > div > div.Login{
-  color:white;
+#root > div > div.Login {
+  color: white;
 }
