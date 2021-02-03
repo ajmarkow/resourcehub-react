@@ -44,7 +44,7 @@ input[type=file] {
   padding-right:10%;
 }
 
-#root > div > div.p-0.row > div > nav > div > div > div {
+#root > div > div.p-0.row > div > nav > div > div > button > a,#root > div > div.p-0.row > div > nav > div > div > div {
   color:white;
   font-style: oblique;
 }
@@ -58,7 +58,7 @@ input[type=file] {
   font-style: oblique;
 }
 
-#root > div > div.p-0.row > div > nav > div > div > div > button.noto.btn.btn-danger > a {
+ #root > div > div.p-0.row > div > nav > div > div > div > button.noto.btn.btn-danger > a {
  color:white;
 }
 
@@ -75,9 +75,10 @@ input[type=file] {
   color:white;
   font-style: oblique;
 }
-#root > div > div.p-0.row > div > nav > div > div > div > button.noto.btn.btn-dark > a{
+#root > div > div.p-0.row > div > nav > div > div > div > button.noto.btn.btn-dark > a, #root > div > div.Login > form > button{
   color:white;
   font-style: oblique;
+  text-transform: uppercase;
 }
 
 #root > div > div.p-0.row > div > nav > div > div > div > button.noto.btn.btn-outline-danger > a:hover{
@@ -87,4 +88,8 @@ input[type=file] {
 
 #root > div > div.p-0.row > div > nav > div > div > div > button.noto.btn.btn-danger > a {
  color:white;
+}
+
+#root > div > div.Login{
+  color:white;
 }
