@@ -1,17 +1,17 @@
 const config = {
   s3: {
-    REGION: process.env.API_REGION,
-    BUCKET: 'resourcehubposts'
+    REGION: "us-west-2",
+    BUCKET: "resourcehubposts",
   },
   apiGateway: {
-    REGION: process.env.API_REGION,
-    URL: process.env.URL,
+    REGION: "us-west-2",
+    URL: "https://gwx1pf1drh.execute-api.us-west-2.amazonaws.com/dev/",
   },
   cognito: {
-    REGION: process.env.API_REGION,
-    USER_POOL_ID: process.env.USER_POOL_ID,
-    APP_CLIENT_ID: process.env.CLIENT_ID,
-    IDENTITY_POOL_ID: process.env.ID_POOL_ID,
+    REGION: "us-west-2",
+    USER_POOL_ID: "us-west-2_wXNeeZx6R",
+    APP_CLIENT_ID: "1f2du8himti5048uu5gu1v5q6",
+    IDENTITY_POOL_ID: "us-west-2:61410108-c255-4867-abd2-cbdcfe4fff9f",
   },
 };
 
