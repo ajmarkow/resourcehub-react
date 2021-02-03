@@ -17,7 +17,7 @@ h1, h2, h3, h4, h5, h6, .gradient, #root > div > div > div > nav > span > h1 {
   background-clip: text;
   color: transparent;
   font-weight:700;
-  margin-left: 5%;
+  cmargin-left: 5%;
   padding-right: 10%;
 }
 code {
