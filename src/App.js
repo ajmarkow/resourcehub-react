@@ -1,9 +1,9 @@
-import './App.css';
+import "./App.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Column from "react-bootstrap/Col";
 import Routes from "./Routes";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
@@ -11,18 +11,37 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { LinkContainer } from "react-router-bootstrap";
 import "./App.css";
 import "./index.css";
-
+import { Auth } from "aws-amplify";
 import { AppContext } from "./libs/contextLib";
-
 
 function App() {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
-  function handleLogout() {
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
+
+  useEffect(() => {
+    onLoad();
+  }, []);
+
+  async function onLoad() {
+    try {
+      await Auth.currentSession();
+      userHasAuthenticated(true);
+    } catch (e) {
+      if (e !== "No current user") {
+        alert(e);
+      }
+    }
+    setIsAuthenticating(false);
+  }
+
+  async function handleLogout() {
+    await Auth.signOut();
+
     userHasAuthenticated(false);
   }
-  
+
   return (
-    <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
+    !isAuthenticating && (
       <Container fluid className="p-0">
         <Row className="p-0">
           <Column className="p-0">
@@ -56,9 +75,11 @@ function App() {
             </Navbar>
           </Column>
         </Row>
-        <Routes />
+        <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
+          <Routes />
+        </AppContext.Provider>
       </Container>
-    </AppContext.Provider>
+    )
   );
 }
 
