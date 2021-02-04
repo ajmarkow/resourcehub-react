@@ -8,6 +8,7 @@ import "./NewPost.css";
 import Card from "react-bootstrap/Card";
 import StarRatingComponent from "react-star-rating-component";
 import { useForm } from "react-hook-form";
+import { API } from "aws-amplify";
 
 const contentFilters = ["beginner", "intermediate", "advanced"];
 
@@ -16,7 +17,9 @@ export default function NewPost() {
   const history = useHistory();
   const [content, setContent] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { register, handleSubmit } = useForm();
+  const [starRating, setStarRating] = useState(1);
+
+  const { register, handleSubmit, errors } = useForm();
   // const handleSettingContent = (data) => console.log(data);
   const onSubmit = (data) => console.log(data);
 
@@ -30,6 +33,10 @@ export default function NewPost() {
 
   function handleSettingContent(event) {
     setContent([...content, event.target.value]);
+  }
+
+  function onStarClick(nextValue, prevValue, name) {
+    this.setState({ rating: nextValue });
   }
 
   // async function handleSubmit(event) {
@@ -57,9 +64,14 @@ export default function NewPost() {
               // value={content}
               as="textarea"
               onChange={(e) => e.target.value}
-              ref={register}
+              ref={register({ required: true })}
               name="blurb"
             />
+            {errors.blurb && errors.blurb.type === "required" && (
+              <span className="noto" role="alert">
+                This is required
+              </span>
+            )}
           </Form.Group>
           <Form.Group controlId="PostLink">
             <Form.Label className="labels">Post Link</Form.Label>
@@ -67,7 +79,7 @@ export default function NewPost() {
               // value={content}
               type="text"
               onChange={handleSettingContent}
-              ref={register}
+              ref={register({ required: true })}
               name="link"
             />
           </Form.Group>
@@ -79,7 +91,7 @@ export default function NewPost() {
               // value={content}
               type="text"
               onChange={handleSettingContent}
-              ref={register}
+              ref={register({ required: true })}
               name="labels"
             />
           </Form.Group>
@@ -95,7 +107,7 @@ export default function NewPost() {
                       type="checkbox"
                       onChange={handleSettingContent}
                       name={level}
-                      ref={register}
+                      ref={register({ required: true })}
                     />
                   }
                   label={level}
@@ -111,7 +123,8 @@ export default function NewPost() {
               editing={true}
               renderStarIcon={() => <span>⭐</span>}
               starCount={5}
-              value={1}
+              value={starRating}
+              ref={register}
             />
           </Form.Group>
           <Form.Group controlId="Attachment">
