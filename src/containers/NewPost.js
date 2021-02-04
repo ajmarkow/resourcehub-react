@@ -71,7 +71,7 @@ export default function NewPost() {
 
   return (
     <Card bg="dark" style={{ width: "80%" }} className="p-5 NewPost">
-      <div classname="NewPost">
+      <div className="NewPost">
         <Form onSubmit={handleSubmit(handleFormSubmit)}>
           <Form.Group controlId="PostBlurb">
             <Form.Label className="labels">Describe the Content</Form.Label>

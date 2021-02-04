@@ -30,14 +30,14 @@ export default function Home() {
   }, [isAuthenticated]);
 
   function loadPosts() {
-    return API.get("posts","/posts");
+    return API.get("posts", "/posts");
   }
 
   function renderPostsList(posts) {
     return (
-      <>
+      <div className="col-7 ">
         <LinkContainer to="/posts/new">
-          <ListGroup.Item action className="py-3 text-nowrap text-truncate">
+          <ListGroup.Item action className="py-1 text-nowrap text-truncate">
             <BsFileEarmarkPlus size={17} />
             <span className="ml-2 font-weight-bold">Create new post</span>
           </ListGroup.Item>
@@ -49,25 +49,33 @@ export default function Home() {
             postLink,
             postKeywords,
             postLanguage,
-            postRating,
-            attachment,
+              postRating,
+          attachment,
             createdAt,
           }) => (
             <LinkContainer key={postId} to={`/posts/${postId}`}>
               <ListGroup.Item action>
-                {postBlurb}
-                {postLink}
-                {postKeywords}
-                {postRating}
+                <span className="font-weight-bold">
+                  {postBlurb.trim().split("\n")[0]}
+                  <br></br>
+                  <a href={postLink}>{postLink.trim().split("\n")[0]}</a>
+                  <br></br>
+                </span>
+                <span className="text-muted">
+                  Tags: {postKeywords}
+                  <br></br>
+                  Rating: {postRating}
+                </span>
+                <br />
               </ListGroup.Item>
             </LinkContainer>
           )
         )}
         ;
-      </>
+      </div>
     );
   }
-      
+
   function renderLander() {
     return (
       <div className="lander">
@@ -91,7 +99,9 @@ export default function Home() {
     <div className="Home">
       <div className="lander">
         <h1>Homepage</h1>
-        {isAuthenticated ? renderPosts() : renderLander()}
+        <div className="d-block justify-content-center">
+          {isAuthenticated ? renderPosts() : renderLander()}
+        </div>
       </div>
     </div>
   );
