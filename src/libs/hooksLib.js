@@ -13,3 +13,17 @@ export function useFormFields(initialState) {
     },
   ];
 }
+
+export function useContentFields(initialState) {
+  const [content, setContent] = useState(initialState);
+
+  return [
+    content,
+    function (event) {
+      setContent({
+        ...content,
+        [event.target.id]: event.target.value,
+      });
+    },
+  ];
+}

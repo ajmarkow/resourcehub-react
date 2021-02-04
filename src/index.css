@@ -6,29 +6,16 @@ body {
   background-color: #282c34;
 }
 
-#root > div > div.p-0.row > div > nav > a > h1,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.gradient,
-#root > div > div > div > nav > span > h1 {
+#root>div>div.p-0.row>div>nav>a>h1, h1, h2, h3, h4, h5, h6, .gradient, #root>div>div>div>nav>span>h1 {
   font-family: "Noto Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #21c07b; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #21c07b,
-    #0c6dd4
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #21c07b,
-    #0c6dd4
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #21c07b;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient( to right, #21c07b, #0c6dd4);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient( to right, #21c07b, #0c6dd4);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -36,16 +23,15 @@ h6,
   margin-left: 5%;
   padding-right: 10%;
 }
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-select.form-control,
-textarea.form-control,
-input.form-control {
+select.form-control, textarea.form-control, input.form-control {
   font-size: 1rem;
 }
+
 input[type="file"] {
   width: 100%;
 }
@@ -55,54 +41,14 @@ input[type="file"] {
   font-weight: bold;
   text-transform: uppercase;
 }
+
 .nav-padding {
   padding-right: 10%;
 }
 
-#root > div > div.p-0.row > div > nav > div > div > button > a,
-#root > div > div.p-0.row > div > nav > div > div > div {
+#root>div>div.p-0.row>div>nav>div>div>button>a, #root>div>div.p-0.row>div>nav>div>div>div>button.noto.btn.btn-outline-danger>a:hover, #root>div>div.p-0.row>div>nav>div>div>div, #root>div>div.p-0.row>div>nav>div>div>div>button.noto.btn.btn-dark>a, .labels, #root>div>div.p-0.row>div>nav>div>div>div>button.noto.btn.btn-outline-danger>a:hover, #root>div>div.p-0.row>div>nav>div>div>div, #root>div>div.Signup>form {
   color: white;
   font-style: oblique;
-}
-#root
-  > div
-  > div.p-0.row
-  > div
-  > nav
-  > div
-  > div
-  > div
-  > button.noto.btn.btn-dark
-  > a {
-  color: white;
-  font-style: oblique;
-}
-
-#root
-  > div
-  > div.p-0.row
-  > div
-  > nav
-  > div
-  > div
-  > div
-  > button.noto.btn.btn-outline-danger
-  > a:hover {
-  color: white;
-  font-style: oblique;
-}
-
-#root
-  > div
-  > div.p-0.row
-  > div
-  > nav
-  > div
-  > div
-  > div
-  > button.noto.btn.btn-danger
-  > a {
-  color: white;
 }
 
 .noto {
@@ -110,63 +56,24 @@ input[type="file"] {
   font-weight: bold;
   text-transform: uppercase;
 }
+
 .nav-padding {
   padding-right: 10%;
 }
 
-#root > div > div.p-0.row > div > nav > div > div > div,
-#root > div > div.Signup > form {
-  color: white;
-  font-style: oblique;
-}
-#root
-  > div
-  > div.p-0.row
-  > div
-  > nav
-  > div
-  > div
-  > div
-  > button.noto.btn.btn-dark
-  > a,
-#root > div > div.Login > form > button {
+#root>div>div.p-0.row>div>nav>div>div>div>button.noto.btn.btn-dark>a, #root>div>div.Login>form>button {
   color: white;
   font-style: oblique;
   text-transform: uppercase;
 }
 
-#root
-  > div
-  > div.p-0.row
-  > div
-  > nav
-  > div
-  > div
-  > div
-  > button.noto.btn.btn-outline-danger
-  > a:hover {
-  color: white;
-  font-style: oblique;
-}
-
-#root
-  > div
-  > div.p-0.row
-  > div
-  > nav
-  > div
-  > div
-  > div
-  > button.noto.btn.btn-danger
-  > a {
+#root>div>div.p-0.row>div>nav>div>div>div>button.noto.btn.btn-danger>a, #root>div>div.p-0.row>div>nav>div>div>div>button.noto.btn.btn-danger>a, #root>div>div.Login, #root>div>div.Signup>form>div>small {
   color: white;
 }
 
-#root > div > div.Login {
-  color: white;
-}
-
-#root > div > div.Signup > form > div > small {
-  color: white;
-  font-weight: bolder;
+#root>div>div.mx-auto.row>div {
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
