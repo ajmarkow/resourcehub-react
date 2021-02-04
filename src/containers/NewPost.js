@@ -10,6 +10,7 @@ import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { useForm } from "react-hook-form";
 import { API } from "aws-amplify";
+import { s3Upload } from "../libs/awsLib";
 
 const contentFilters = ["beginner", "intermediate", "advanced"];
 const options = [1, 2, 3, 4, 5];
@@ -24,17 +25,26 @@ export default function NewPost() {
   const { register, handleSubmit, errors } = useForm();
 
   async function handleFormSubmit(data) {
-    console.log(data);
+    if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
+      alert(
+        `Please pick a file smaller than ${
+          config.MAX_ATTACHMENT_SIZE / 1000000
+        } MB.`
+      );
+      return;
+    }
+
     setIsLoading(true);
 
     try {
+      const attachment = file.current ? await s3Upload(file.current) : null;
       await createPost({
         postBlurb: data.postBlurb,
         postLink: data.postLink,
         postLanguage: data.postLanguage,
         postKeywords: data.postKeywords,
         postRating: data.postRating,
-        attachment: data.attachment,
+        attachment: `${attachment}`,
       });
       history.push("/");
     } catch (e) {
@@ -60,26 +70,6 @@ export default function NewPost() {
     file.current = event.target.files[0];
   }
 
-  function onStarClick(nextValue, prevValue, name) {
-    this.setState({ rating: nextValue });
-  }
-
-  // async function handleSubmit(event) {
-  //   event.preventDefault();
-
-  //   if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
-  //     alert(
-  //       `Please pick a file smaller than ${
-  //         config.MAX_ATTACHMENT_SIZE / 1000000
-  //       } MB.`
-  //     );
-  //     return;
-  //   }
-
-  //   setIsLoading(true);
-
-  // }
-
   return (
     <Card bg="dark" style={{ width: "80%" }} className="p-5 NewPost">
       <div classname="NewPost">
@@ -89,7 +79,7 @@ export default function NewPost() {
             <Form.Control
               // value={content}
               as="textarea"
-              // onChange={(e) => e.target.value}
+              onChange={(e) => e.target.value}
               ref={register({ required: true })}
               name="postBlurb"
             />
@@ -104,7 +94,7 @@ export default function NewPost() {
             <Form.Control
               // value={content}
               type="text"
-              // onChange={(e) => e.target.value}
+              onChange={(e) => e.target.value}
               ref={register({ required: true })}
               name="postLink"
             />
@@ -116,7 +106,7 @@ export default function NewPost() {
             <Form.Control
               // value={content}
               type="text"
-              // onChange={(e) => e.target.value}
+              onChange={(e) => e.target.value}
               ref={register({ required: true })}
               name="postLanguage"
             />
@@ -157,7 +147,7 @@ export default function NewPost() {
           <Form.Group controlId="Attachment">
             <Form.Label className="labels">Attach a related file</Form.Label>
             <Form.Control
-              // onChange={handleFileChange}
+              onChange={handleFileChange}
               type="file"
               variant="secondary"
               ref={register}
