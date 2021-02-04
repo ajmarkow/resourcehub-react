@@ -6,7 +6,6 @@ import { onError } from "../libs/errorLib";
 import config from "../config";
 import "./NewPost.css";
 import Card from "react-bootstrap/Card";
-import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { useForm } from "react-hook-form";
 import { API } from "aws-amplify";
@@ -27,13 +26,13 @@ export default function NewPost() {
   async function handleFormSubmit(data) {
     if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
       alert(
-        `Please pick a file smaller than ${
+      `Please pick a file smaller than ${
           config.MAX_ATTACHMENT_SIZE / 1000000
         } MB.`
       );
       return;
     }
-
+    
     setIsLoading(true);
 
     try {
@@ -148,6 +147,11 @@ export default function NewPost() {
             <Form.Label className="labels">Attach a related file</Form.Label>
             <Form.Control
               onChange={handleFileChange}
+              type="file"
+              type="file"
+              type="file"
+              type="file"
+              type="file"
               type="file"
               variant="secondary"
               ref={register}
