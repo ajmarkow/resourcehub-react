@@ -1,0 +1,7 @@
+.NewPost form textarea {
+  height: 300px;
+  font-size: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
