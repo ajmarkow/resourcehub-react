@@ -8,7 +8,6 @@ import LoaderButton from "../components/LoaderButton";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import { s3Upload } from "../libs/awsLib";
-import { useContentFields} from "../libs/hooksLib";
 
 export default function Posts() {
   const file = useRef(null);
@@ -19,14 +18,7 @@ export default function Posts() {
   const [isDeleting, setIsDeleting] = useState(false);
   const { register, handleSubmit, errors } = useForm();
 
-  const [content, setContent] = useContentFields({
-    postBlurb: "",
-    postLink: "",
-    postLanguage: "",
-    postKeywords: [],
-    postRating: "",
-  });
-
+  
   useEffect(() => {
     function loadPost() {
       return API.get("posts", `/posts/${id}`);
@@ -54,9 +46,9 @@ export default function Posts() {
   }, [id]);
 
 
-      function validateForm() {
-        return post.length > 0;
-      }
+  function validateForm() {
+    return post.length > 0;
+  }
 
   function savePost(post) {
     return API.put("posts", `/posts/${id}`, {
@@ -104,6 +96,10 @@ export default function Posts() {
     }
   }
 
+  function deletePost() {
+    return API.del("posts", `/posts/${id}`);
+  }
+
   async function handleDelete(event) {
     event.preventDefault();
 
@@ -116,6 +112,14 @@ export default function Posts() {
     }
 
     setIsDeleting(true);
+
+    try {
+      await deletePost();
+      history.push("/");
+    } catch (e) {
+      onError(e);
+      setIsDeleting(false);
+    }
   }
 
   return (
