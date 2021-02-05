@@ -3,11 +3,11 @@ import { useParams, useHistory } from "react-router-dom";
 import { API, Storage } from "aws-amplify";
 import { onError } from "../libs/errorLib";
 import { useForm } from "react-hook-form";
-import NewPost from "./NewPost";
 import config from "../config";
 import LoaderButton from "../components/LoaderButton";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
+import { s3Upload } from "../libs/awsLib";
 
 export default function Posts() {
   const file = useRef(null);
@@ -28,18 +28,13 @@ export default function Posts() {
         const post = await loadPost();
         console.log(post);
         const {
-          postBlurb,
-          postKeywords,
-          postLink,
-          postRating,
-          postLanguage,
           attachment,
         } = post;
 
         if (attachment) {
           post.attachmentURL = await Storage.vault.get(attachment);
         }
-
+        
         setPost(post);
       } catch (e) {
         onError(e);
@@ -49,10 +44,16 @@ export default function Posts() {
     onLoad();
   }, [id]);
 
-  function validateForm() {
-    return post.length > 0;
-  }
 
+      function validateForm() {
+        return post.length > 0;
+      }
+
+  function savePost(post) {
+    return API.put("posts", `/posts/${id}`, {
+      body: post
+    });
+  }
   function formatFilename(str) {
     return str.replace(/^\w+-/, "");
   }
@@ -61,10 +62,9 @@ export default function Posts() {
     file.current = event.target.files[0];
   }
 
-  async function handleFormSubmit(event) {
+  async function handleFormSubmit(data, event) {
     let attachment;
-
-    // event.preventDefault();
+    event.preventDefault();
 
     if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
       alert(
@@ -76,6 +76,23 @@ export default function Posts() {
     }
 
     setIsLoading(true);
+    try {
+      if (file.current) {
+        attachment = await s3Upload(file.current);
+      }
+      await savePost({
+        postBlurb: data.postBlurb,
+        postLink: data.postLink,
+        postLanguage: data.postLanguage,
+        postKeywords: data.postKeywords,
+        postRating: data.postRating,
+        attachment: attachment || post.attachment,
+      });
+      history.push("/");
+    } catch (e) {
+      onError(e);
+      setIsLoading(false);
+    }
   }
 
   async function handleDelete(event) {
@@ -106,7 +123,7 @@ export default function Posts() {
                     </Form.Label>
                     <Form.Control
                       as="textarea"
-                      onChange={(e) => setPost(e.target.value)}
+                      onChange={(e) => (e.target.value)}
                       ref={register({ required: true })}
                       name="postBlurb"
                       value={post.postBlurb}
