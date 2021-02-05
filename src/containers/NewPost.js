@@ -11,15 +11,13 @@ import { useForm } from "react-hook-form";
 import { API } from "aws-amplify";
 import { s3Upload } from "../libs/awsLib";
 
-const contentFilters = ["beginner", "intermediate", "advanced"];
-const options = [1, 2, 3, 4, 5];
+// const contentFilters = ["beginner", "intermediate", "advanced"];
+// const options = [1, 2, 3, 4, 5];
 
 export default function NewPost() {
   const file = useRef(null);
   const history = useHistory();
-  const [content, setContent] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [starRating, setStarRating] = useState(1);
 
   const { register, handleSubmit, errors } = useForm();
 
@@ -147,11 +145,6 @@ export default function NewPost() {
             <Form.Label className="labels">Attach a related file</Form.Label>
             <Form.Control
               onChange={handleFileChange}
-              type="file"
-              type="file"
-              type="file"
-              type="file"
-              type="file"
               type="file"
               variant="secondary"
               ref={register}

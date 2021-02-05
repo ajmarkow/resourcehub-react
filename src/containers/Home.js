@@ -3,7 +3,6 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
 import "./Home.css";
-import NewPost from "./NewPost";
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
 import { BsFileEarmarkPlus } from "react-icons/bs";
