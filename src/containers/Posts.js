@@ -56,7 +56,9 @@ export default function Posts() {
     });
   }
   function formatFilename(str) {
-    return str.replace(/^\w+-/, "");
+    if (str != null) {
+      return str.replace(/^\w+-/, "");
+  }
   }
 
   function handleFileChange(event) {
