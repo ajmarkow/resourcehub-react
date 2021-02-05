@@ -8,15 +8,24 @@ import LoaderButton from "../components/LoaderButton";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import { s3Upload } from "../libs/awsLib";
+import { useContentFields} from "../libs/hooksLib";
 
 export default function Posts() {
   const file = useRef(null);
   const { id } = useParams();
   const history = useHistory();
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const { register, handleSubmit, errors } = useForm();
+
+  const [content, setContent] = useContentFields({
+    postBlurb: "",
+    postLink: "",
+    postLanguage: "",
+    postKeywords: [],
+    postRating: "",
+  });
 
   useEffect(() => {
     function loadPost() {
@@ -40,7 +49,7 @@ export default function Posts() {
         onError(e);
       }
     }
-
+    console.log(post);
     onLoad();
   }, [id]);
 
@@ -112,7 +121,7 @@ export default function Posts() {
   return (
     <React.Fragment>
       <div className="posts">
-        {post && (
+        (
           <div>
             <Card bg="dark" style={{ width: "80%" }} className="p-5 NewPost">
               <div className="NewPost">
@@ -122,11 +131,11 @@ export default function Posts() {
                       Describe the Content
                     </Form.Label>
                     <Form.Control
-                      as="textarea"
-                      onChange={(e) => (e.target.value)}
-                      ref={register({ required: true })}
-                      name="postBlurb"
-                      value={post.postBlurb}
+                    as="textarea"
+                    onChange={(e) => setPost(e.target.value)}
+                    ref={register({ required: true })}
+                    name="postBlurb"
+                    value={ post.postBlurb}
                     />
                     {errors.blurb && errors.blurb.type === "required" && (
                       <span className="noto" role="alert">
@@ -232,7 +241,7 @@ export default function Posts() {
               Delete
             </LoaderButton>
           </div>
-        )}
+        )
       </div>
     </React.Fragment>
   );
