@@ -6,6 +6,7 @@ import Login from "./containers/Login";
 import Signup from "./containers/Signup";
 import NewPost from "./containers/NewPost";
 import Posts from "./containers/Posts";
+import LandingPage from "./containers/LandingPage";
 
 export default function Routes() {
   return (
@@ -24,6 +25,9 @@ export default function Routes() {
       </Route>
       <Route exact path="/posts/:id">
         <Posts />
+      </Route>
+      <Route exact path='/landingpage'>
+        <LandingPage />
       </Route>
       <Route>
         <NotFound />
