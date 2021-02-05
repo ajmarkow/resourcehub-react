@@ -9,12 +9,19 @@ import { BsFileEarmarkPlus } from "react-icons/bs";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const [allPosts, setAllPosts] = useState([]);
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function onLoad() {
       if (!isAuthenticated) {
+        // try {
+        //   const posts = await loadAllPosts();
+        //   setAllPosts(posts);
+        // } catch (e) {
+        //   onError(e);
+        // }
         return;
       }
       try {
@@ -30,6 +37,10 @@ export default function Home() {
 
   function loadPosts() {
     return API.get("posts", "/posts");
+  }
+
+  function loadAllPosts() {
+    return API.get("posts", "/posts/all");
   }
 
   function renderPostsList(posts) {
@@ -48,8 +59,8 @@ export default function Home() {
             postLink,
             postKeywords,
             postLanguage,
-              postRating,
-          attachment,
+            postRating,
+            attachment,
             createdAt,
           }) => (
             <LinkContainer key={postId} to={`/posts/${postId}`}>
@@ -76,6 +87,7 @@ export default function Home() {
   }
 
   function renderLander() {
+    console.log(allPosts);
     return (
       <div className="lander">
         <h1>Resource Hub</h1>
