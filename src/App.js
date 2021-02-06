@@ -15,6 +15,7 @@ import { Auth } from "aws-amplify";
 import { AppContext } from "./libs/contextLib";
 import { useHistory } from "react-router-dom";
 import { onError } from "./libs/errorLib";
+import { BsFillPlusSquareFill } from "react-icons/bs";
 
 function App() {
   const history = useHistory();
@@ -55,6 +56,13 @@ function App() {
                 </Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle />
+              {isAuthenticated && (
+                <span className='text-nowrap'>
+                  <Nav.Link href="/home">
+                    <BsFillPlusSquareFill /> <h5> Share a Post</h5>
+                  </Nav.Link>
+                </span>
+              )}
               <Navbar.Collapse className="justify-content-end p-4">
                 <Nav activeKey={window.location.pathname}>
                   {isAuthenticated ? (
