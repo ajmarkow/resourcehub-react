@@ -11,7 +11,7 @@ import LandingPage from "./containers/LandingPage";
 export default function Routes() {
   return (
     <Switch>
-      <Route exact path="/">
+      <Route exact path="/home">
         <Home />
       </Route>
       <Route exact path="/login">
@@ -26,7 +26,7 @@ export default function Routes() {
       <Route exact path="/posts/:id">
         <Posts />
       </Route>
-      <Route exact path='/landingpage'>
+      <Route exact path='/'>
         <LandingPage />
       </Route>
       <Route>
