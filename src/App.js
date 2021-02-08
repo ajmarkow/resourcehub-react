@@ -15,7 +15,7 @@ import { Auth } from "aws-amplify";
 import { AppContext } from "./libs/contextLib";
 import { useHistory } from "react-router-dom";
 import { onError } from "./libs/errorLib";
-import { BsFillPlusSquareFill, BsFillHouseFill } from "react-icons/bs";
+import { BsFillPlusSquareFill, BsCreditCard, BsFillHouseFill } from "react-icons/bs";
 
 function App() {
   const history = useHistory();
@@ -68,10 +68,20 @@ function App() {
                     </Nav.Link>
                   </span>
                 )}
+
+                <Nav.Link href="/donate" title="Donate">
+                  <span>
+                    <BsCreditCard size={30} />
+                  </span>
+                </Nav.Link>
+
                 {isAuthenticated && (
                   <Nav.Link href="/posts/new" title="Share posts">
                     <span>
-                      <BsFillPlusSquareFill size={26} className='menu-padding' />
+                      <BsFillPlusSquareFill
+                        size={26}
+                        className="menu-padding"
+                      />
                     </span>
                   </Nav.Link>
                 )}

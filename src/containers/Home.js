@@ -41,6 +41,7 @@ export default function Home() {
       setIsLoading(false);
     }
     onLoad();
+          
   }, [isAuthenticated]);
 
   function loadPosts() {
