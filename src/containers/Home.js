@@ -98,10 +98,10 @@ export default function Home() {
                     renderStarIcon={() => <span>⭐</span>}
                     starCount={postRating}
                   />
-                  <p>Attachment: <a target="_blank" rel="noopener noreferrer" href={posts.attachment}>{formatFilename(attachment)}</a></p>
+                  {/* <p>Attachment: <a target="_blank" rel="noopener noreferrer" href={posts.attachment}>{(attachment === 'null') ? "No File Uploaded":formatFilename(attachment)}</a></p> */}
                 </span>
                 <br />
-                <p class='tiny'>Posted at {createdAt.toString()}</p>
+                <p>Posted at: {new Date(createdAt).toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})}</p>
               </ListGroup.Item>
             </LinkContainer>
           )
@@ -124,8 +124,7 @@ export default function Home() {
 
   function renderPosts() {
     return (
-      <div className="posts">
-        <h2 className="pb-3 mt-4 mb-3 border-bottom">Your Posts</h2>
+      <div className="posts pb-5 mt-4 mb-3">
         <ListGroup>{!isLoading && renderPostsList(posts)}</ListGroup>
       </div>
     );
@@ -133,7 +132,7 @@ export default function Home() {
   return (
     <div className="Home">
       <div className="lander">
-        <h1>Homepage</h1>
+        <h1 className="font-weight-bold pb-3 mt-4 mb-3">Your Posts</h1>
         <div className="d-block justify-content-center">
           {isAuthenticated ? renderPosts() : renderLander()}
         </div>

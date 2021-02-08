@@ -66,7 +66,17 @@ export default function LandingPage() {
                   renderStarIcon={() => <span>⭐</span>}
                   starCount={postRating}
                 />
-                <p>Attachment: <a target="_blank" rel="noopener noreferrer" href={attachment}/></p>
+                <p>
+                  Posted at:{" "}
+                  {new Date(createdAt).toLocaleString([], {
+                    year: "numeric",
+                    month: "numeric",
+                    day: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </p>
+                {/* <p>Attachment: <a target="_blank" rel="noopener noreferrer" href={attachment}/></p> */}
               </span>
               <br />
             </ListGroup.Item>
@@ -79,7 +89,6 @@ export default function LandingPage() {
   function renderPosts() {
     return (
       <div className="posts">
-        <h2 className="pb-3 mt-4 mb-3">All Posts</h2>
         <ListGroup>{!isLoading && renderPostsList(allPosts)}</ListGroup>
       </div>
     );
@@ -87,7 +96,7 @@ export default function LandingPage() {
   return (
     <div className="Home">
       <div className="lander">
-        <h1>Post Feed</h1>
+        <h1 className="font-weight-bold pb-3 mt-4 mb-3">All Posts</h1>
         <div className="d-block justify-content-center">{renderPosts()}</div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import { useHistory } from "react-router-dom";
 import LoaderButton from "../components/LoaderButton";
 import { onError } from "../libs/errorLib";
@@ -68,7 +69,9 @@ export default function NewPost() {
   }
 
   return (
-    <Card bg="dark" style={{ width: "80%" }} className="p-5 NewPost">
+    <Card bg="dark" className="p-5 NewPost">
+      <Button className='font-weight-bold' variant='light' onClick={() => history.goBack()}>Back</Button>
+      <br></br>
       <div className="NewPost">
         <Form onSubmit={handleSubmit(handleFormSubmit)}>
           <Form.Group controlId="PostBlurb">
