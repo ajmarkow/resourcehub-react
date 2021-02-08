@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
@@ -6,8 +6,11 @@ import "./Home.css";
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
 import { BsFileEarmarkPlus } from "react-icons/bs";
+import StarRatingComponent from "react-star-rating-component";
+import { s3Upload } from"../libs/awsLib";
 
 export default function Home() {
+  const file = useRef(null);
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
   const { isAuthenticated } = useAppContext();
@@ -26,6 +29,11 @@ export default function Home() {
       }
       try {
         const posts = await loadPosts();
+        
+        if (posts.attachment) {
+          posts.attachment = await Storage.vault.get(posts.attachment);
+        }
+        
         setPosts(posts);
       } catch (e) {
         onError(e);
@@ -43,9 +51,13 @@ export default function Home() {
     return API.get("posts", "/posts/all");
   }
 
+  function formatFilename(str) {
+    return str.replace(/^\w+-/, "");
+  }
+
   function renderPostsList(posts) {
     return (
-      <div className="col-7 ">
+      <div>
         <LinkContainer to="/posts/new">
           <ListGroup.Item action className="py-1 text-nowrap text-truncate">
             <BsFileEarmarkPlus size={17} />
@@ -68,20 +80,32 @@ export default function Home() {
                 <span className="font-weight-bold">
                   {postBlurb.trim().split("\n")[0]}
                   <br></br>
-                  <a href={postLink}>{postLink.trim().split("\n")[0]}</a>
+                  <a href={postLink} target="_blank" rel="noopener noreferrer">
+                    {postLink.trim().split("\n")[0]}
+                  </a>
                   <br></br>
                 </span>
                 <span className="text-muted">
+                  Language: {postLanguage}
+                  <br></br>
                   Tags: {postKeywords}
                   <br></br>
-                  Rating: {postRating}
+                  Rating:
+                  <br />
+                  <StarRatingComponent
+                    name={postId}
+                    editing={false}
+                    renderStarIcon={() => <span>⭐</span>}
+                    starCount={postRating}
+                  />
+                  <p>Attachment: <a target="_blank" rel="noopener noreferrer" href={posts.attachment}>{formatFilename(attachment)}</a></p>
                 </span>
                 <br />
+                <p class='tiny'>Posted at {createdAt.toString()}</p>
               </ListGroup.Item>
             </LinkContainer>
           )
         )}
-        ;
       </div>
     );
   }

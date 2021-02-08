@@ -80,10 +80,13 @@ export default function NewPost() {
               ref={register({ required: true })}
               name="postBlurb"
             />
-            {errors.blurb && errors.blurb.type === "required" && (
+            {errors.postBlurb && errors.postBlurb.type === "required" && (
               <span className="noto" role="alert">
-                This is required
+                <h6>A description is required.</h6>
               </span>
+            )}
+            {errors.postLink && (
+              <h6 className="noto">Make sure you enter a valid web address.</h6>
             )}
           </Form.Group>
           <Form.Group controlId="PostLink">
@@ -92,7 +95,10 @@ export default function NewPost() {
               // value={content}
               type="text"
               onChange={(e) => e.target.value}
-              ref={register({ required: true })}
+              ref={register({
+                required: true,
+                pattern: /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/i,
+              })}
               name="postLink"
             />
           </Form.Group>
