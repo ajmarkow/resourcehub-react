@@ -6,8 +6,23 @@ import "./Home.css";
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
 import StarRatingComponent from "react-star-rating-component";
+import YouTube from "react-youtube";
+import SpotifyPlayer from "react-spotify-player";
 
 export default function LandingPage() {
+
+
+
+  function extractVideoID(url) {
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    console.log(url);
+    var match = url.match(regExp);
+    if (match && match[7].length == 11) {
+      return match[7];
+    } else {
+      alert("Could not extract video ID.");
+    }
+  }
   const [allPosts, setAllPosts] = useState([]);
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
@@ -66,6 +81,16 @@ export default function LandingPage() {
                   renderStarIcon={() => <span>⭐</span>}
                   starCount={postRating}
                 />
+                {postLink.includes("youtube.com") && (
+                  <em>
+                    <YouTube videoId={extractVideoID(postLink)}></YouTube>
+                  </em>
+                )}
+                {postLink.includes("open.spotify.com") && (
+                  <React.Fragment>
+                    <SpotifyPlayer uri={postLink}></SpotifyPlayer>
+                  </React.Fragment>
+                )}
                 <p>
                   Posted at:{" "}
                   {new Date(createdAt).toLocaleString([], {

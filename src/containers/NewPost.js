@@ -71,6 +71,7 @@ export default function NewPost() {
   return (
     <Card bg="dark" className="p-5 NewPost">
       <Button className='font-weight-bold' variant='light' onClick={() => history.goBack()}>Back</Button>
+      {/* <h4>Create a New Post</h4> */}
       <br></br>
       <div className="NewPost">
         <Form onSubmit={handleSubmit(handleFormSubmit)}>
