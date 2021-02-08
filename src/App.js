@@ -15,7 +15,7 @@ import { Auth } from "aws-amplify";
 import { AppContext } from "./libs/contextLib";
 import { useHistory } from "react-router-dom";
 import { onError } from "./libs/errorLib";
-import { BsFillPlusSquareFill } from "react-icons/bs";
+import { BsFillPlusSquareFill, BsFillHouseFill } from "react-icons/bs";
 
 function App() {
   const history = useHistory();
@@ -50,18 +50,29 @@ function App() {
         <Row className="p-0">
           <Column className="p-0">
             <Navbar collapseOnSelect bg="light" sticky="top">
-              <LinkContainer to="/">
+              <LinkContainer to="/" title="All posts">
                 <Navbar.Brand className="gradient">
                   <h1>RE:SOURCE HUB</h1>
                 </Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle />
               {isAuthenticated && (
-                <span className='text-nowrap'>
-                  <Nav.Link href="/home">
-                    <BsFillPlusSquareFill /> <h5> Share a Post</h5>
+                <span className="text-nowrap">
+                  <Nav.Link
+                    href="/home"
+                    data-toogle="tooltip"
+                    title="Your posts"
+                  >
+                    <BsFillHouseFill size={30} />
                   </Nav.Link>
                 </span>
+              )}
+              {isAuthenticated && (
+                <Nav.Link href="/posts/new" title="Share posts">
+                  <span>
+                    <BsFillPlusSquareFill size={30} />
+                  </span>
+                </Nav.Link>
               )}
               <Navbar.Collapse className="justify-content-end p-4">
                 <Nav activeKey={window.location.pathname}>

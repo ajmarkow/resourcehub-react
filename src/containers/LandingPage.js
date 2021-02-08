@@ -5,6 +5,7 @@ import { onError } from "../libs/errorLib";
 import "./Home.css";
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
+import StarRatingComponent from "react-star-rating-component";
 
 export default function LandingPage() {
   const [allPosts, setAllPosts] = useState([]);
@@ -31,7 +32,7 @@ export default function LandingPage() {
   function renderPostsList(allPosts) {
     console.log(allPosts);
     return (
-      <div className="col-7 ">
+      <div>
         {allPosts.Items.map(
           ({
             postId,
@@ -43,23 +44,34 @@ export default function LandingPage() {
             attachment,
             createdAt,
           }) => (
-            <ListGroup.Item >
+            <ListGroup.Item>
               <span className="font-weight-bold">
                 {postBlurb.trim().split("\n")[0]}
                 <br></br>
-                <a href={postLink}>{postLink.trim().split("\n")[0]}</a>
+                <a href={postLink} target="_blank" rel="noopener noreferrer">
+                  {postLink.trim().split("\n")[0]}
+                </a>
                 <br></br>
               </span>
               <span className="text-muted">
+                Language: {postLanguage}
+                <br></br>
                 Tags: {postKeywords}
                 <br></br>
-                Rating: {postRating}
+                Rating:
+                <br />
+                <StarRatingComponent
+                  name={postId}
+                  editing={false}
+                  renderStarIcon={() => <span>⭐</span>}
+                  starCount={postRating}
+                />
+                <p>Attachment: <a target="_blank" rel="noopener noreferrer" href={attachment}/></p>
               </span>
               <br />
             </ListGroup.Item>
           )
         )}
-        ;
       </div>
     );
   }
@@ -67,7 +79,7 @@ export default function LandingPage() {
   function renderPosts() {
     return (
       <div className="posts">
-        <h2 className="pb-3 mt-4 mb-3 border-bottom">All Posts</h2>
+        <h2 className="pb-3 mt-4 mb-3">All Posts</h2>
         <ListGroup>{!isLoading && renderPostsList(allPosts)}</ListGroup>
       </div>
     );
@@ -76,9 +88,7 @@ export default function LandingPage() {
     <div className="Home">
       <div className="lander">
         <h1>Post Feed</h1>
-        <div className="d-block justify-content-center">
-          {renderPosts()}
-        </div>
+        <div className="d-block justify-content-center">{renderPosts()}</div>
       </div>
     </div>
   );

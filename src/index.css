@@ -77,3 +77,9 @@ input[type="file"] {
   margin-right: auto;
   display: block;
 }
+
+.list-group {
+  color: black;
+  width:100vw;
+  text-align:left;
+}
