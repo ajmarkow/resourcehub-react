@@ -56,25 +56,26 @@ function App() {
                 </Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle />
-              {isAuthenticated && (
-                <span className="text-nowrap">
-                  <Nav.Link
-                    href="/home"
-                    data-toogle="tooltip"
-                    title="Your posts"
-                  >
-                    <BsFillHouseFill size={30} />
-                  </Nav.Link>
-                </span>
-              )}
-              {isAuthenticated && (
-                <Nav.Link href="/posts/new" title="Share posts">
-                  <span>
-                    <BsFillPlusSquareFill size={30} />
-                  </span>
-                </Nav.Link>
-              )}
               <Navbar.Collapse className="justify-content-end p-4">
+                {isAuthenticated && (
+                  <span className="text-nowrap">
+                    <Nav.Link
+                      href="/home"
+                      data-toogle="tooltip"
+                      title="Your posts"
+                    >
+                      <BsFillHouseFill size={30} />
+                    </Nav.Link>
+                  </span>
+                )}
+                {isAuthenticated && (
+                  <Nav.Link href="/posts/new" title="Share posts">
+                    <span>
+                      <BsFillPlusSquareFill size={26} className='menu-padding' />
+                    </span>
+                  </Nav.Link>
+                )}
+
                 <Nav activeKey={window.location.pathname}>
                   {isAuthenticated ? (
                     <Button className="noto" variant="primary">

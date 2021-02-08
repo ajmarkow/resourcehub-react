@@ -83,3 +83,7 @@ input[type="file"] {
   width:100vw;
   text-align:left;
 }
+
+.menu-padding{
+  margin-right: 5vw;
+}
