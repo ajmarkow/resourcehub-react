@@ -8,21 +8,32 @@ import { LinkContainer } from "react-router-bootstrap";
 import StarRatingComponent from "react-star-rating-component";
 import YouTube from "react-youtube";
 import SpotifyPlayer from "react-spotify-player";
-
+import { TwitterTweetEmbed } from 'react-twitter-embed';
+import { extract } from 'oembed-parser';
 export default function LandingPage() {
 
 
 
   function extractVideoID(url) {
-    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    let regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
     console.log(url);
-    var match = url.match(regExp);
+    let match = url.match(regExp);
     if (match && match[7].length == 11) {
       return match[7];
     } else {
       alert("Could not extract video ID.");
     }
   }
+
+  function getTweetId(url) {
+   let regExp = /(^|[^'"])(https?:\/\/twitter\.com\/(?:#!\/)?(\w‌​+)\/status(?:es)?\/(‌​\d+))/;
+      console.log(url);
+    let match = url.match(regExp);
+    let id = match[2];
+    console.log(id)
+    return id;
+  }
+
   const [allPosts, setAllPosts] = useState([]);
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);

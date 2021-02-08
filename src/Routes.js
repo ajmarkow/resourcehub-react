@@ -7,6 +7,7 @@ import Signup from "./containers/Signup";
 import NewPost from "./containers/NewPost";
 import Posts from "./containers/Posts";
 import LandingPage from "./containers/LandingPage";
+import Donate from "./containers/Donate";
 
 export default function Routes() {
   return (
@@ -17,6 +18,10 @@ export default function Routes() {
       <Route exact path="/login">
         <Login />
       </Route>
+      <Route exact path="/donate">
+        <Donate />
+      </Route>
+
       <Route exact path="/signup">
         <Signup />
       </Route>
@@ -26,7 +31,7 @@ export default function Routes() {
       <Route exact path="/posts/:id">
         <Posts />
       </Route>
-      <Route exact path='/'>
+      <Route exact path="/">
         <LandingPage />
       </Route>
       <Route>
