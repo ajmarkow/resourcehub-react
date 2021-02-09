@@ -10,10 +10,24 @@ import StarRatingComponent from "react-star-rating-component";
 import YouTube from "react-youtube";
 import SpotifyPlayer from "react-spotify-player";
 import { TwitterTweetEmbed } from "react-twitter-embed";
-import getTweetId from "./LandingPage";
-import extractVideoID from "./LandingPage";
 
 export default function Home() {
+  function getTweetId(arg) {
+    let tweetId = arg.split("/")[5];
+    return tweetId;
+  }
+  
+  function extractVideoID(url) {
+      let regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+      console.log(url);
+      let match = url.match(regExp);
+      if (match && match[7].length === 11) {
+        return match[7];
+      } else {
+      }
+  }
+
+
   const playerSize = {
     width: "70%",
   };
