@@ -7,14 +7,17 @@ import StarRatingComponent from "react-star-rating-component";
 import YouTube from "react-youtube";
 import SpotifyPlayer from "react-spotify-player";
 import { TwitterTweetEmbed } from "react-twitter-embed";
-// import { useAppContext } from "../libs/contextLib";
+import LazyLoad from 'react-lazy-load';
+import { useAppContext } from "../libs/contextLib";
 
-export function getTweetId(arg) {
-  let tweetId = arg.split("/")[5];
-  return tweetId;
-}
 
-export function extractVideoID(url) {
+export default function LandingPage() {
+  function getTweetId(arg) {
+    let tweetId = arg.split("/")[5];
+    return tweetId;
+  }
+
+  function extractVideoID(url) {
     let regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
     console.log(url);
     let match = url.match(regExp);
@@ -22,17 +25,14 @@ export function extractVideoID(url) {
       return match[7];
     } else {
     }
-
   }
-export default function LandingPage() {
+  
   const playerSize = {
     width: "70%",
   };
 
-
-
   const [allPosts, setAllPosts] = useState([]);
-  // const { isAuthenticated } = useAppContext();
+  const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -66,66 +66,68 @@ export default function LandingPage() {
             attachment,
             createdAt,
           }) => (
-            <ListGroup.Item key={postId}>
-              <span className="font-weight-bold">
-                {postBlurb.trim().split("\n")[0]}
-                <br></br>
-                <a href={postLink} target="_blank" rel="noopener noreferrer">
-                  {postLink.trim().split("\n")[0]}
-                </a>
-                <br></br>
-              </span>
-              <span className="text-muted">
-                Language: {postLanguage}
-                <br></br>
-                Tags:{postKeywords}
-                <br></br>
-                Rating:
+            <LazyLoad offsetVertical={100}>
+              <ListGroup.Item key={postId}>
+                <span className="font-weight-bold">
+                  {postBlurb.trim().split("\n")[0]}
+                  <br></br>
+                  <a href={postLink} target="_blank" rel="noopener noreferrer">
+                    {postLink.trim().split("\n")[0]}
+                  </a>
+                  <br></br>
+                </span>
+                <span className="feed-text">
+                  Language: {postLanguage}
+                  <br></br>
+                  Tags:{postKeywords}
+                  <br></br>
+                  Rating:
+                  <br />
+                  <StarRatingComponent
+                    name={postId}
+                    editing={false}
+                    renderStarIcon={() => <span>⭐</span>}
+                    starCount={parseInt(postRating)}
+                  />
+                  {postLink.includes("youtube.com") && (
+                    <em>
+                      <YouTube videoId={extractVideoID(postLink)}></YouTube>
+                    </em>
+                  )}
+                  {postLink.includes("open.spotify.com") && (
+                    <React.Fragment>
+                      <br></br>
+                      <SpotifyPlayer
+                        view="list"
+                        className="no-overflow"
+                        theme="white"
+                        scrolling="no"
+                        // view ='coverart'
+                        size={playerSize}
+                        uri={postLink}
+                      ></SpotifyPlayer>
+                    </React.Fragment>
+                  )}
+                  {postLink.includes("twitter.com") && (
+                    <TwitterTweetEmbed
+                      tweetId={getTweetId(postLink)}
+                    ></TwitterTweetEmbed>
+                  )}
+                  <p>
+                    Posted at:{" "}
+                    {new Date(createdAt).toLocaleString([], {
+                      year: "numeric",
+                      month: "numeric",
+                      day: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </p>
+                  {/* <p>Attachment: <a target="_blank" rel="noopener noreferrer" href={attachment}/></p> */}
+                </span>
                 <br />
-                <StarRatingComponent
-                  name={postId}
-                  editing={false}
-                  renderStarIcon={() => <span>⭐</span>}
-                  starCount={parseInt(postRating)}
-                />
-                {postLink.includes("youtube.com") && (
-                  <em>
-                    <YouTube videoId={extractVideoID(postLink)}></YouTube>
-                  </em>
-                )}
-                {postLink.includes("open.spotify.com") && (
-                  <React.Fragment>
-                    <br></br>
-                    <SpotifyPlayer
-                      view="list"
-                      className="no-overflow"
-                      theme="white"
-                      scrolling="no"
-                      // view ='coverart'
-                      size={playerSize}
-                      uri={postLink}
-                    ></SpotifyPlayer>
-                  </React.Fragment>
-                )}
-                {postLink.includes("twitter.com") && (
-                  <TwitterTweetEmbed
-                    tweetId={getTweetId(postLink)}
-                  ></TwitterTweetEmbed>
-                )}
-                <p>
-                  Posted at:{" "}
-                  {new Date(createdAt).toLocaleString([], {
-                    year: "numeric",
-                    month: "numeric",
-                    day: "numeric",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
-                </p>
-                {/* <p>Attachment: <a target="_blank" rel="noopener noreferrer" href={attachment}/></p> */}
-              </span>
-              <br />
-            </ListGroup.Item>
+              </ListGroup.Item>
+            </LazyLoad>
           )
         )}
       </div>
