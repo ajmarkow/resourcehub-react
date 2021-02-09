@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
@@ -7,10 +7,18 @@ import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
 import { BsFileEarmarkPlus } from "react-icons/bs";
 import StarRatingComponent from "react-star-rating-component";
-import { s3Upload } from"../libs/awsLib";
+import YouTube from "react-youtube";
+import SpotifyPlayer from "react-spotify-player";
+import { TwitterTweetEmbed } from "react-twitter-embed";
+import getTweetId from "./LandingPage";
+import extractVideoID from "./LandingPage";
 
 export default function Home() {
-  const file = useRef(null);
+  const playerSize = {
+    width: "70%",
+  };
+
+  // const file = useRef(null);
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
   const { isAuthenticated } = useAppContext();
@@ -29,11 +37,11 @@ export default function Home() {
       }
       try {
         const posts = await loadPosts();
-        
+
         if (posts.attachment) {
           posts.attachment = await Storage.vault.get(posts.attachment);
         }
-        
+
         setPosts(posts);
       } catch (e) {
         onError(e);
@@ -41,20 +49,19 @@ export default function Home() {
       setIsLoading(false);
     }
     onLoad();
-          
   }, [isAuthenticated]);
 
   function loadPosts() {
     return API.get("posts", "/posts");
   }
 
-  function loadAllPosts() {
-    return API.get("posts", "/posts/all");
-  }
+  // function loadAllPosts() {
+  //   return API.get("posts", "/posts/all");
+  // }
 
-  function formatFilename(str) {
-    return str.replace(/^\w+-/, "");
-  }
+  // function formatFilename(str) {
+  //   return str.replace(/^\w+-/, "");
+  // }
 
   function renderPostsList(posts) {
     return (
@@ -99,10 +106,43 @@ export default function Home() {
                     renderStarIcon={() => <span>⭐</span>}
                     starCount={postRating}
                   />
+                  {postLink.includes("youtube.com") && (
+                    <em>
+                      <YouTube videoId={extractVideoID(postLink)}></YouTube>
+                    </em>
+                  )}
+                  {postLink.includes("open.spotify.com") && (
+                    <React.Fragment>
+                      <br></br>
+                      <SpotifyPlayer
+                        view="list"
+                        className="no-overflow"
+                        theme="white"
+                        scrolling="no"
+                        // view ='coverart'
+                        size={playerSize}
+                        uri={postLink}
+                      ></SpotifyPlayer>
+                    </React.Fragment>
+                  )}
+                  {postLink.includes("twitter.com") && (
+                    <TwitterTweetEmbed
+                      tweetId={getTweetId(postLink)}
+                    ></TwitterTweetEmbed>
+                  )}
                   {/* <p>Attachment: <a target="_blank" rel="noopener noreferrer" href={posts.attachment}>{(attachment === 'null') ? "No File Uploaded":formatFilename(attachment)}</a></p> */}
                 </span>
                 <br />
-                <p>Posted at: {new Date(createdAt).toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})}</p>
+                <p>
+                  Posted at:{" "}
+                  {new Date(createdAt).toLocaleString([], {
+                    year: "numeric",
+                    month: "numeric",
+                    day: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </p>
               </ListGroup.Item>
             </LinkContainer>
           )
