@@ -33,11 +33,7 @@ function BillingForm({ isLoading, onSubmit, ...props }) {
 
   return (
     <div className="col-6 payment">
-      <Form
-        className="BillingForm"
-        className="p-5"
-        onSubmit={handleSubmitClick}
-      >
+      <Form className="BillingForm p-5" onSubmit={handleSubmitClick}>
         <h4 className="billingheader">Donate a dollar to help with hosting</h4>
         <hr />
         <Form.Group size="lg" controlId="name">
@@ -70,7 +66,8 @@ function BillingForm({ isLoading, onSubmit, ...props }) {
                 color: "#303238",
               },
             },
-          }}></CardElement>
+          }}
+        ></CardElement>
         <br></br>
         <LoaderButton
           block

@@ -1,41 +1,35 @@
 import React, { useState, useEffect } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
 import "./Home.css";
 import { API } from "aws-amplify";
-import { LinkContainer } from "react-router-bootstrap";
 import StarRatingComponent from "react-star-rating-component";
 import YouTube from "react-youtube";
 import SpotifyPlayer from "react-spotify-player";
-import { TwitterTweetEmbed } from 'react-twitter-embed';
-import { extract } from 'oembed-parser';
-export default function LandingPage() {
+import { TwitterTweetEmbed } from "react-twitter-embed";
 
+export function getTweetId(arg) {
+  let tweetId = arg.split("/")[5];
+  return tweetId;
+}
 
-
-  function extractVideoID(url) {
-    let regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+  export function extractVideoID(url) {
+    let regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
     console.log(url);
     let match = url.match(regExp);
-    if (match && match[7].length == 11) {
+    if (match && match[7].length === 11) {
       return match[7];
     } else {
-      alert("Could not extract video ID.");
     }
   }
+export default function LandingPage() {
+  const playerSize = {
+    width: "70%",
+  };
 
-  function getTweetId(url) {
-   let regExp = /(^|[^'"])(https?:\/\/twitter\.com\/(?:#!\/)?(\w‌​+)\/status(?:es)?\/(‌​\d+))/;
-      console.log(url);
-    let match = url.match(regExp);
-    let id = match[2];
-    console.log(id)
-    return id;
-  }
+
 
   const [allPosts, setAllPosts] = useState([]);
-  const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -99,8 +93,22 @@ export default function LandingPage() {
                 )}
                 {postLink.includes("open.spotify.com") && (
                   <React.Fragment>
-                    <SpotifyPlayer uri={postLink}></SpotifyPlayer>
+                    <br></br>
+                    <SpotifyPlayer
+                      view="list"
+                      className="no-overflow"
+                      theme="white"
+                      scrolling="no"
+                      // view ='coverart'
+                      size={playerSize}
+                      uri={postLink}
+                    ></SpotifyPlayer>
                   </React.Fragment>
+                )}
+                {postLink.includes("twitter.com") && (
+                  <TwitterTweetEmbed
+                    tweetId={getTweetId(postLink)}
+                  ></TwitterTweetEmbed>
                 )}
                 <p>
                   Posted at:{" "}
