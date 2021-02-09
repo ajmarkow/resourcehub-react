@@ -7,13 +7,14 @@ import StarRatingComponent from "react-star-rating-component";
 import YouTube from "react-youtube";
 import SpotifyPlayer from "react-spotify-player";
 import { TwitterTweetEmbed } from "react-twitter-embed";
+// import { useAppContext } from "../libs/contextLib";
 
 export function getTweetId(arg) {
   let tweetId = arg.split("/")[5];
   return tweetId;
 }
 
-  export function extractVideoID(url) {
+export function extractVideoID(url) {
     let regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
     console.log(url);
     let match = url.match(regExp);
@@ -21,6 +22,7 @@ export function getTweetId(arg) {
       return match[7];
     } else {
     }
+
   }
 export default function LandingPage() {
   const playerSize = {
@@ -30,6 +32,7 @@ export default function LandingPage() {
 
 
   const [allPosts, setAllPosts] = useState([]);
+  // const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -50,7 +53,6 @@ export default function LandingPage() {
   }
 
   function renderPostsList(allPosts) {
-    console.log(allPosts);
     return (
       <div>
         {allPosts.Items.map(
@@ -64,7 +66,7 @@ export default function LandingPage() {
             attachment,
             createdAt,
           }) => (
-            <ListGroup.Item>
+            <ListGroup.Item key={postId}>
               <span className="font-weight-bold">
                 {postBlurb.trim().split("\n")[0]}
                 <br></br>
@@ -76,7 +78,7 @@ export default function LandingPage() {
               <span className="text-muted">
                 Language: {postLanguage}
                 <br></br>
-                Tags: {postKeywords}
+                Tags:{postKeywords}
                 <br></br>
                 Rating:
                 <br />
@@ -84,7 +86,7 @@ export default function LandingPage() {
                   name={postId}
                   editing={false}
                   renderStarIcon={() => <span>⭐</span>}
-                  starCount={postRating}
+                  starCount={parseInt(postRating)}
                 />
                 {postLink.includes("youtube.com") && (
                   <em>
