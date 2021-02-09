@@ -110,7 +110,7 @@ export default function Home() {
                 <span className="feed-text">
                   Language: {postLanguage}
                   <br></br>
-                  Tags: {postKeywords}
+                  Tags:  {postKeywords.length > 0 ? postKeywords.join(", "):"No tags 😢"}
                   <br></br>
                   Rating:
                   <br />

@@ -26,7 +26,7 @@ export default function LandingPage() {
     } else {
     }
   }
-  
+
   const playerSize = {
     width: "70%",
   };
@@ -79,7 +79,10 @@ export default function LandingPage() {
                 <span className="feed-text">
                   Language: {postLanguage}
                   <br></br>
-                  Tags:{postKeywords}
+                  Tags:{" "}
+                  {postKeywords.length > 1
+                    ? postKeywords.join(", ")
+                    : "No tags 😢"}
                   <br></br>
                   Rating:
                   <br />
