@@ -16,6 +16,7 @@ import { AppContext } from "./libs/contextLib";
 import { useHistory } from "react-router-dom";
 import { onError } from "./libs/errorLib";
 import { BsFillPlusSquareFill, BsCreditCard, BsFillHouseFill } from "react-icons/bs";
+import ScrollToTop from "react-scroll-up";
 
 function App() {
   const history = useHistory();
@@ -41,7 +42,7 @@ function App() {
   async function handleLogout() {
     await Auth.signOut();
     userHasAuthenticated(false);
-    history.push("/login");
+    history.push("/");
   }
 
   return (
@@ -111,6 +112,9 @@ function App() {
         <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
           <Routes />
         </AppContext.Provider>
+        <ScrollToTop showUnder={100}>
+          <Button outline variant='primary'>Return to Top</Button>
+        </ScrollToTop>
       </Container>
     )
   );

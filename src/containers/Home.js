@@ -107,7 +107,7 @@ export default function Home() {
                   </a>
                   <br></br>
                 </span>
-                <span className="text-muted">
+                <span className="feed-text">
                   Language: {postLanguage}
                   <br></br>
                   Tags: {postKeywords}
