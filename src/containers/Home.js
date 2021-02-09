@@ -104,7 +104,7 @@ export default function Home() {
                     name={postId}
                     editing={false}
                     renderStarIcon={() => <span>⭐</span>}
-                    starCount={postRating}
+                    starCount={parseInt(postRating)}
                   />
                   {postLink.includes("youtube.com") && (
                     <em>
