@@ -12,9 +12,9 @@ Built as interns at  https://www.serverlessguru.com/
     * Check the site out at [https://resource-hub.co](https://resource-hub.co/)
 * Application where users can post & share helpful tech resources using a REST API backend with full CRUD functionality. AWS backend utilizing S3, DynamoDB, Lambda, Gateway & Cognito.
 
-**_Component Diagram:_**
-[Image: image.png]_**Screenshot of Landing Page:**_
-[Image: image.png]
+**_Images: 1. Landing Page 2. Component Diagram:_**
+![](https://i.imgur.com/xJfI3Ly.png)
+![](https://i.imgur.com/uyW82EN.png)
 ## Setup/Installation Requirements
 
 **Interactive Development Environment**
