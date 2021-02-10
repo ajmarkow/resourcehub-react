@@ -4,7 +4,7 @@
 React Application, Resourcehub Front-end
 By **AJ Markow, Ben White, Chloe Hellberg**
 
-Built as interns at  https://www.serverlessguru.com/
+**Built as interns at https://www.serverlessguru.com/**
 
 ## Description
 
