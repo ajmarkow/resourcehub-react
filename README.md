@@ -1,5 +1,5 @@
 # *Re:source - Hub Client*
-* * *
+
 2/10/2021
 React Application, Resourcehub Front-end
 By **AJ Markow, Ben White, Chloe Hellberg**
