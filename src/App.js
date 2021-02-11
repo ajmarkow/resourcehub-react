@@ -113,7 +113,7 @@ function App() {
           <Routes />
         </AppContext.Provider>
         <ScrollToTop showUnder={100}>
-          <Button outline variant='primary'>Return to Top</Button>
+          <Button className='return-button' outline variant='primary'>Return to Top</Button>
         </ScrollToTop>
       </Container>
     )
