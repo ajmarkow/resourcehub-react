@@ -55,7 +55,7 @@ export default function LandingPage() {
   function renderPostsList(allPosts) {
     return (
       <div>
-        {allPosts.Items.map(
+        {allPosts.Items.sort((a, b) => b.createdAt - a.createdAt).map(
           ({
             postId,
             postBlurb,

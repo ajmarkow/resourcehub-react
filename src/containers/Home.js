@@ -86,7 +86,7 @@ export default function Home() {
             <span className="ml-2 font-weight-bold">Create new post</span>
           </ListGroup.Item>
         </LinkContainer>
-        {posts.map(
+        {posts.sort((a, b) => b.createdAt - a.createdAt).map(
           ({
             postId,
             postBlurb,
