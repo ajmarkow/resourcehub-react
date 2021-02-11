@@ -2,9 +2,9 @@
 
 2/10/2021
 React Application, Resourcehub Front-end <br>
-By **AJ Markow, Ben White, Chloe Hellberg**
 
 **Built as interns at https://www.serverlessguru.com/**
+**By AJ Markow, Ben White, Chloe Hellberg**
 
 ## Description
 
