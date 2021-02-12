@@ -70,10 +70,16 @@ export default function NewPost() {
 
   if (isAuthenticated) {
     return (
-      <Card bg="dark" className="p-5 NewPost" >
-        <Button className='font-weight-bold' variant='light' onClick={() => history.goBack()}>Back</Button>
+      <Card bg="dark" className="p-5 NewPost">
+        <Button
+          className="font-weight-bold"
+          variant="light"
+          onClick={() => history.goBack()}
+        >
+          Back
+        </Button>
         {/* <h4>Create a New Post</h4> */}
-        <br></br >
+        <br></br>
         <div className="NewPost">
           <Form onSubmit={handleSubmit(handleFormSubmit)}>
             <Form.Group controlId="PostBlurb">
@@ -91,7 +97,9 @@ export default function NewPost() {
                 </span>
               )}
               {errors.postLink && (
-                <h6 className="noto">Make sure you enter a valid web address.</h6>
+                <h6 className="noto">
+                  Make sure you enter a valid web address.
+                </h6>
               )}
             </Form.Group>
             <Form.Group controlId="PostLink">
@@ -110,29 +118,79 @@ export default function NewPost() {
             <Form.Group controlId="postLanguage">
               <Form.Label className="labels">
                 What programming language?
-            </Form.Label>
+              </Form.Label>
               <Form.Control
-                // value={content}
-                type="text"
-                onChange={(e) => e.target.value}
-                ref={register({ required: true })}
+                as="select"
+                id="postLanguage"
                 name="postLanguage"
-              />
+                size="3"
+                ref={register}
+              >
+                <option value="JavaScript">JavaScript</option>
+                <option value="HTML/CSS">HTML/CSS</option>
+                <option value="SQL">SQL</option>
+                <option value="Python">Python</option>
+                <option value="Java">Java</option>
+                <option value="Shell Scripting">Shell Scripting</option>
+                <option value="C#">C#</option>
+                <option value="PHP">PHP</option>
+                <option value="C++">C++</option>
+                <option value="TypeScript">TypeScript</option>
+                <option value="C">C</option>
+                <option value="Ruby">Ruby</option>
+                <option value="Go">Go</option>
+                <option value="Assembly">Assembly</option>
+                <option value="Swift">Swift</option>
+                <option value="Kotlin">Kotlin</option>
+                <option value="Dart">Dart</option>
+                <option value="Objective-C">Objective-C</option>
+                <option value="Scala">Scala</option>
+                <option value="Rust">Rust</option>
+                <option value="Elixir">Elixir</option>
+                <option value="Clojure">Clojure</option>
+              </Form.Control>
             </Form.Group>
             <Form.Group controlId="postKeywords">
-              <Form.Label className="labels">Any Keywords?</Form.Label>
+              <Form.Label className="labels">
+                Any Keywords? (Multiple Choice)
+              </Form.Label>
               <Form.Control
                 as="select"
                 multiple
+                id="postKeywords"
                 name="postKeywords"
                 size="3"
                 ref={register}
               >
-                <option value="Tutorial">Tutorial</option>
                 <option value="Blog Post">Blog Post</option>
-                <option value="Youtube Video">Youtube Video</option>
                 <option value="Podcast">Podcast</option>
-                <option value="Documentation">Documentation</option>
+                <option value="Serverless">Serverless</option>
+                <option value="YouTube Video">YouTube Video</option>
+                <option value="Beginners">Beginners</option>
+                <option value="React">React</option>
+                <option value="Productivity">Productivity</option>
+                <option value="Node">Node</option>
+                <option value="Career Advice">Career Advice</option>
+                <option value="GitHub">GitHub</option>
+                <option value="iOS Development">iOS Development</option>
+                <option value="Open Source">Open Source</option>
+                <option value="Testing">Testing</option>
+                <option value="Angular">Angular</option>
+                <option value="Vue">Vue</option>
+                <option value="Databases">Databases</option>
+                <option value="AWS">AWS</option>
+                <option value="Cloud">Cloud</option>
+                <option value="VS Code">VS Code</option>
+                <option value="Design">Design</option>
+                <option value="UI + UX">UI + UX</option>
+                <option value="Women in Tech">Women in Tech</option>
+                <option value="Leadership">Leadership</option>
+                <option value="Firebase">Firebase</option>
+                <option value="Gatsby">Gatsby</option>
+                <option value="Next.js">Next.js</option>
+                <option value="APIs">APIs</option>
+                <option value="Blockchain">Blockchain</option>
+                <option value="Game Development">Game Development</option>
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="postRating">
@@ -168,13 +226,13 @@ export default function NewPost() {
               size="lg"
               variant="primary"
               isLoading={isLoading}
-            // disabled={!validateForm()}
+              // disabled={!validateForm()}
             >
               Share it
-          </LoaderButton>
+            </LoaderButton>
           </Form>
         </div>
-      </Card >
+      </Card>
     );
   } else return (
     <Card className="p-5 warningcard">
