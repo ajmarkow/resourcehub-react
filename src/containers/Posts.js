@@ -28,7 +28,6 @@ export default function Posts() {
     async function onLoad() {
       try {
         const post = await loadPost();
-        console.log(post);
         const {
           attachment,
         } = post;
@@ -42,7 +41,6 @@ export default function Posts() {
         onError(e);
       }
     }
-    console.log(post);
     onLoad();
   }, [id]);
 

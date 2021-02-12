@@ -19,7 +19,6 @@ export default function Home() {
   
   function extractVideoID(url) {
       let regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-      console.log(url);
       let match = url.match(regExp);
       if (match && match[7].length === 11) {
         return match[7];
@@ -166,7 +165,6 @@ export default function Home() {
   }
 
   function renderLander() {
-    console.log(allPosts);
     return (
       <div className="lander">
         <h1>Resource Hub</h1>

@@ -56,7 +56,6 @@ export default function NewPost() {
     const sentPost = API.post("posts", "/posts", {
       body: post,
     });
-    console.log(sentPost);
     return sentPost;
   }
 
