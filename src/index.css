@@ -111,11 +111,18 @@ input[type="file"] {
   font-size: 2.5vh;
 }
 
-a{
-  color:rgba(0, 0, 0, 0.568);
-  font-size:1.5vh;
+a {
+  color: rgba(0, 0, 0, 0.568);
+  font-size: 1.5vh;
 }
 
-.return-button{
+.return-button {
   width: 20vw;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  .return-button {
+    width: 70vw;
+    height: auto;
+  }
 }
