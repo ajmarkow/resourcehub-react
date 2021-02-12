@@ -8,6 +8,7 @@ import LoaderButton from "../components/LoaderButton";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import { s3Upload } from "../libs/awsLib";
+import Button from "react-bootstrap/Button";
 
 export default function Posts() {
   const file = useRef(null);
@@ -129,7 +130,14 @@ export default function Posts() {
       <div className="posts">
         (
         <div>
-          <Card bg="dark" style={{ width: "80%" }} className="p-5 NewPost">
+          <Card bg="dark" className="p-5 NewPost">
+            <Button
+              className="font-weight-bold"
+              variant="light"
+              onClick={() => history.goBack()}
+            >
+              Back
+            </Button>
             <div className="NewPost">
               <Form onSubmit={handleSubmit(handleFormSubmit)}>
                 <Form.Group controlId="PostBlurb">
