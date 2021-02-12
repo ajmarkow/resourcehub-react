@@ -76,7 +76,7 @@ function BillingForm({ isLoading, onSubmit, ...props }) {
           isLoading={isLoading}
           disabled={!validateForm()}
         >
-          Purchase
+          Donate
         </LoaderButton>
       </Form>
     </div>
