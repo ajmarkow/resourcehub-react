@@ -120,6 +120,19 @@ a {
   width: 20vw;
 }
 
+.warningcard{
+  margin-top: 25vh;
+  margin-bottom: 25vh;
+  margin-left:25vw;
+  margin-right: 25vw;
+  display: block;
+  text-align: center;
+  text-transform:uppercase;
+}
+.bigemoji{
+  font-size: 3vh;
+}
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
   .return-button {
     width: 70vw;
