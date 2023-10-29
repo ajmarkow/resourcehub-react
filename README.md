@@ -3,12 +3,12 @@
 2/10/2021
 React Application, Resourcehub Front-end <br>
 
-**Built as interns at https://www.serverlessguru.com/** <br>
+**Built as interns at  https://www.serverlessguru.com/** <br>
 **By AJ Markow, Ben White, Chloe Hellberg**
 
 ## Description
 
-* React Frontend for an application to share resources for web developers.
+* This repo contains the React Frontend for an application to share resources for web developers.
     * Check the site out at [https://resource-hub.co](https://resource-hub.co/)
 * Application where users can post & share helpful tech resources using a REST API backend with full CRUD functionality. AWS backend utilizing S3, DynamoDB, Lambda, Gateway & Cognito.
 
